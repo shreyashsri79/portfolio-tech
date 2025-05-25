@@ -1,10 +1,12 @@
 import React from "react";
+import { Style_Script } from "next/font/google";
 
+const title = Style_Script({ subsets: ["latin"], weight: ["400", "400"] })
 export default function Navbar() {
     return (
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-black bg-[#fafafa]">
         <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
-          <div className="text-2xl font-bold underline underline-offset-[6px]">
+          <div className={`text-2xl font-bold underline underline-offset-[6px]`}>
             shreyash neeraj
           </div>
   

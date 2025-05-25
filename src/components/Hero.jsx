@@ -13,7 +13,7 @@ const Hero = () => {
                 <p className={`${title.className} text-8xl`}>Shreyash Neeraj</p>
                 <p className={`${title.className} text-4xl`}>Developer</p>
             </div>
-            <p className={`${desc.className} max-w-150`}>Full-stack developer, problem solver, Android enthusiast, web tinkerer, backend builder, design admirer, tech explorer — and a second-year engineering student shaping thoughtful digital experiences. Currently building a smarter, more animated version of this portfolio!</p>
+            <p className={`${desc.className} max-w-150`}>—hi iam <span className='text-red-700 font-extrabold'>shreyash,</span> <br />a full-stack developer, problem solver, android enthusiast, web tinkerer, backend builder, design admirer, tech explorer — and a second-year engineering student shaping thoughtful digital experiences. Currently building a smarter, more animated version of this portfolio!</p>
         </div>
         <div>
             <Image src="/hero_img.png" width={200} height={200} alt='pfp'/>

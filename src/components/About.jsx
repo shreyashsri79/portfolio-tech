@@ -90,7 +90,7 @@ const About = () => {
             headerVisible ? 'opacity-100 translate-x-0 delay-200' : 'opacity-0 translate-x-10'
           }`}>
             <p className="relative">
-              a little about me :)
+              a little about me <span className='hover:text-red-600 duration-100'>:)</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-500 group-hover:w-full"></span>
             </p>
           </div>

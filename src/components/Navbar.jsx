@@ -12,8 +12,8 @@ export default function Navbar() {
   
           <ul className="flex space-x-8 text-lg font-semibold">
             {['work', 'skills', 'about', 'resume', 'contact'].map((item) => (
-              <li key={item} className="underline underline-offset-[6px]">
-                <a href={`#${item}`}>{item}</a>
+              <li key={item} className="underline hover:text-red-600 underline-offset-[6px]">
+                <a href={item == "resume" ? "/resume.pdf" : `#${item}`}>{item}</a>
               </li>
             ))}
           </ul>

@@ -95,7 +95,7 @@ const Skills = () => {
               {section.items.map((item, itemIndex) => (
                 <div
                   key={item}
-                  className={`border border-black px-3 py-1 font-medium transition-all duration-500  hover:bg-black hover:text-white cursor-pointer ${
+                  className={`border border-black px-3 py-1 font-bold transition-all duration-500  hover:bg-red-600 hover:text-white cursor-pointer ${
                     visibleSections.has(sectionIndex)
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-5'
@@ -139,7 +139,7 @@ const Skills = () => {
                 <img
                   src={`http://github-profile-summary-cards.vercel.app/api/cards/${cardType}?username=shreyashsri79&theme=graywhite${cardType === 'productive-time' ? '&utcOffset=8' : ''}`}
                   alt="GitHub Stats"
-                  className="border transition-transform duration-100"
+                  className="border transition-transform duration-100 "
                 />
               </div>
             ))}

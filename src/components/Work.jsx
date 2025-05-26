@@ -42,7 +42,9 @@ const Work = () => {
       header: "February 2025",
       companyName: "LOCALLOOP",
       image: "/LocalLoop.png",
-      footer: "PROTOTYPE"
+      footer: "PROTOTYPE",
+      url : "https://github.com/shreyashsri79/LocalLoop"
+      
     },
     {
       colorA: "bg-blue-900",
@@ -50,7 +52,8 @@ const Work = () => {
       header: "April 2025", 
       companyName: "SCROLLANA",
       image: "/Scrollana.png",
-      footer: "HACKATHON"
+      footer: "HACKATHON",
+      url : "https://github.com/Sk-Sahil-Islam/SageTech"
     }
   ];
 
@@ -81,7 +84,7 @@ const Work = () => {
                 className={`transition-all duration-700 ${
                   item.text === "/" 
                     ? "text-xl font-bold" 
-                    : "text-lg font-light underline underline-offset-[6px] hover:text-gray-600 cursor-pointer"
+                    : "text-lg font-light underline underline-offset-[6px]"
                 } ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
                 }`}
@@ -101,8 +104,9 @@ const Work = () => {
         className='py-40 px-50 flex gap-20 justify-center'
       >
         {workData.map((card, index) => (
-          <div
+          <a
             key={card.companyName}
+            href={card.url}
             className={`transition-all duration-800 ${
               cardsVisible 
                 ? 'opacity-100 translate-y-0 scale-100' 
@@ -120,7 +124,7 @@ const Work = () => {
               image={card.image}
               footer={card.footer}
             />
-          </div>
+          </a>
         ))}
       </div>
 

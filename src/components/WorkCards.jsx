@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react'
 import Image from 'next/image';
 import { Noto_Sans_Georgian } from 'next/font/google';
 
+
 const title = Noto_Sans_Georgian({ subsets: ["latin"], weight: ["400", "400"] })
 
 export default function WorkCards({colorA, colorB, header, companyName, image, footer}) {

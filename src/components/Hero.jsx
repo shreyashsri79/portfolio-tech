@@ -66,11 +66,11 @@ const Hero = () => {
         }`}
         style={{ transitionDelay: '800ms' }}
         >
-          <p className={`${desc.className} max-w-150`}>
-            —hi iam <span className='text-red-700 font-extrabold animate-pulse'>shreyash,</span> <br />
+          <p className={`${desc.className} max-w-150 text-lg`}>
+            —hi iam <span className='text-red-600 font-extrabold animate-pulse'>shreyash,</span> <br />
             a full-stack developer, problem solver, android enthusiast, web tinkerer,
             backend builder, design admirer, tech explorer — and a second-year
-            engineering student shaping thoughtful digital experiences.
+            engineering student shaping thoughtful experiences.
           </p>
         </div>
       </div>

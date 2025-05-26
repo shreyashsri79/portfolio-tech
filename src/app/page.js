@@ -8,6 +8,7 @@ import Contact from "@/components/ResumeAndContact";
 
 export default function Home() {
   return (
+    <>
     <div className="bg-[#fafafa]">
       <Navbar />
       <Hero />
@@ -16,5 +17,6 @@ export default function Home() {
       <About />
       <Contact />
     </div>
+    </>
   );
 }

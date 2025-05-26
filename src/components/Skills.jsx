@@ -66,7 +66,7 @@ const Skills = () => {
   return (
     <>
       {/* Animated Header */}
-      <header className="border-y border-black bg-[#fafafa] overflow-hidden">
+      <header id='skills' className="border-y border-black bg-[#fafafa] overflow-hidden">
         <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
           <div className="text-2xl font-bold underline underline-offset-[6px] animate-slide-in-left">
             skills

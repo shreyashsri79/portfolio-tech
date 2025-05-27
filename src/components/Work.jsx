@@ -62,7 +62,7 @@ const Work = () => {
       <header 
         id='work' 
         ref={headerRef}
-        className="border-y border-black bg-[#fafafa] overflow-hidden"
+        className="border-y border-black bg-[#fafafa] overflow-hidden items-center"
       >
         <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
           <div className={`text-2xl font-bold underline underline-offset-[6px] transition-all duration-800 ${
@@ -71,7 +71,7 @@ const Work = () => {
             work
           </div>
           
-          <div className='flex gap-3'>
+          <div className='flex gap-2 lg:gap-3'>
             {[
               { text: "internships", delay: "200ms" },
               { text: "/", delay: "300ms" },
@@ -83,8 +83,8 @@ const Work = () => {
                 key={index}
                 className={`transition-all duration-700 ${
                   item.text === "/" 
-                    ? "text-xl font-bold" 
-                    : "text-lg font-light underline underline-offset-[6px]"
+                    ? " lg:text-xl font-bold" 
+                    : "text-sm lg:text-lg font-light underline underline-offset-[6px]"
                 } ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
                 }`}

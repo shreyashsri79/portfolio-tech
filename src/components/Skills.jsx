@@ -71,7 +71,7 @@ const Skills = () => {
           <div className="text-2xl font-bold underline underline-offset-[6px] animate-slide-in-left">
             skills
           </div>
-          <div className="text-lg font-light animate-slide-in-right">
+          <div className="sm:text-lg font-light animate-slide-in-right">
             in order of proficiency / relevance
           </div>
         </nav>

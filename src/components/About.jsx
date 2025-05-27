@@ -99,7 +99,7 @@ const About = () => {
 
       <div 
         ref={containerRef}
-        className='w-screen flex flex-wrap gap-10 px-20 py-20 justify-center'
+        className='w-screen flex flex-wrap gap-10 px-10 py-20 justify-center'
       >
         {items.map((item, idx) =>
           item === "text1" || item === "text2" ? (

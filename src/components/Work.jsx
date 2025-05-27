@@ -101,7 +101,7 @@ const Work = () => {
 
       <div 
         ref={cardsRef}
-        className='py-40 px-50 flex gap-20 justify-center'
+        className='py-40 px-10  flex flex-wrap gap-20 justify-center'
       >
         {workData.map((card, index) => (
           <a

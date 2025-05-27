@@ -105,7 +105,7 @@ const About = () => {
           item === "text1" || item === "text2" ? (
             <div
               key={idx}
-              className={`h-60 w-[30rem] flex items-center shadow-2xl p-5 hover:scale-105 bg-white rounded-md relative overflow-hidden group cursor-pointer ${getItemAnimation(idx)}`}
+              className={`  md:h-60 w-[30rem] flex items-center shadow-2xl p-5 hover:scale-105 bg-white rounded-md relative overflow-hidden group cursor-pointer ${getItemAnimation(idx)}`}
               style={{ 
                 transformOrigin: 'center',
                 animationDelay: `${idx * 150}ms`

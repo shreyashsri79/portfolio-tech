@@ -84,14 +84,14 @@ const Skills = () => {
             key={section.title} 
             ref={el => sectionRefs.current[sectionIndex] = el}
             data-index={sectionIndex}
-            className={`flex gap-50 items-center w-screen justify-center transition-all duration-700 ${
+            className={`flex flex-col lg:flex-row gap-10 lg:gap-50 items-center w-screen justify-center transition-all duration-700 ${
               visibleSections.has(sectionIndex) 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-10'
             }`}
           >
             <h2 className="text-xl font-semibold w-32 shrink-0">{section.title}</h2>
-            <div className="flex flex-wrap gap-3 w-150 justify-center">
+            <div className="flex flex-wrap gap-3 p-3 md:w-150 justify-center">
               {section.items.map((item, itemIndex) => (
                 <div
                   key={item}
@@ -122,7 +122,7 @@ const Skills = () => {
         <div className={`w-screen flex justify-center py-15 transition-all duration-1000 delay-200 ${
           visibleStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
         }`}>
-          <div className='flex flex-wrap w-300 justify-center gap-10'>
+          <div className='flex flex-wrap w-300 justify-center gap-10 p-10'>
             {[
               "repos-per-language",
               "most-commit-language", 

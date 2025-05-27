@@ -20,12 +20,12 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className='flex h-screen w-screen justify-center items-center gap-20 bg-[#fafafa] overflow-hidden'>
+    <div className='flex pt-60 p-10 lg:pt-0 lg:p-0 flex-col lg:flex-row h-screen w-screen justify-center items-center gap-20 bg-[#fafafa] overflow-hidden'>
       {/* Text Content */}
       <div className='flex flex-col gap-15'>
         <div className='flex flex-col gap-5'>
           {/* Name Animation */}
-          <p className={`${title.className} tracking- text-8xl flex gap-10`}>
+          <p className={`${title.className} text-6xl md:text-8xl flex gap-10`}>
             <span className={`transition-all duration-1000 ${
               isVisible 
                 ? 'opacity-100 translate-y-0' 

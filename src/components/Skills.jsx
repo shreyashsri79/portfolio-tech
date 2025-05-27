@@ -90,7 +90,7 @@ const Skills = () => {
                 : 'opacity-0 translate-y-10'
             }`}
           >
-            <h2 className="text-xl font-extrabold w-32 shrink-0">{section.title}</h2>
+            <h2 className="text-xl font-extrabold text-center w-32 shrink-0">{section.title}</h2>
             <div className="flex flex-wrap gap-3 p-3 md:w-150 justify-center">
               {section.items.map((item, itemIndex) => (
                 <div

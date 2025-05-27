@@ -71,8 +71,8 @@ const Skills = () => {
           <div className="text-2xl font-bold underline underline-offset-[6px] animate-slide-in-left">
             skills
           </div>
-          <div className="sm:text-lg font-light animate-slide-in-right">
-            in order of proficiency / relevance
+          <div className="text-lg font-light animate-slide-in-right">
+            in order of proficiency
           </div>
         </nav>
       </header>
@@ -90,7 +90,7 @@ const Skills = () => {
                 : 'opacity-0 translate-y-10'
             }`}
           >
-            <h2 className="text-xl font-semibold w-32 shrink-0">{section.title}</h2>
+            <h2 className="text-xl font-extrabold w-32 shrink-0">{section.title}</h2>
             <div className="flex flex-wrap gap-3 p-3 md:w-150 justify-center">
               {section.items.map((item, itemIndex) => (
                 <div

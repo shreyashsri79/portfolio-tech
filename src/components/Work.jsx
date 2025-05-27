@@ -76,15 +76,14 @@ const Work = () => {
               { text: "internships", delay: "200ms" },
               { text: "/", delay: "300ms" },
               { text: "hackathons", delay: "400ms" },
-              { text: "/", delay: "500ms" },
-              { text: "innovations", delay: "600ms" }
+
             ].map((item, index) => (
               <div 
                 key={index}
                 className={`transition-all duration-700 ${
                   item.text === "/" 
-                    ? " lg:text-xl font-bold" 
-                    : "text-sm lg:text-lg font-light underline underline-offset-[6px]"
+                    ? " text-xl font-bold" 
+                    : ":text-lg font-light underline underline-offset-[6px]"
                 } ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
                 }`}

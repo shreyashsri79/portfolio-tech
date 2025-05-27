@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
-import { Style_Script } from "next/font/google";
+import { Gabriela, Style_Script } from "next/font/google";
 
-const title = Style_Script({ subsets: ["latin"], weight: ["400", "400"] });
+const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] });
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,9 +43,9 @@ export default function Navbar() {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-black bg-[#fafafa]">
+    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-black bg-[#fafafa]`}>
       <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
-        <div className="text-2xl font-bold underline underline-offset-[6px]">
+        <div className={`${title.className} text-2xl font-bold underline underline-offset-[6px]`}>
           shreyash neeraj
         </div>
 
@@ -59,7 +59,7 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <ul
-          className={`flex-row justify-around border-y lg:border-y-0 absolute lg:static top-16 left-0 right-0 bg-[#fafafa] lg:bg-transparent z-40 lg:z-auto space-y-4 lg:space-y-0 lg:space-x-8 text-sm sm:text-lg font-semibold px-6 py-4 lg:py-0 transition-all duration-300 ease-in-out ${
+          className={`${title.className} flex-row justify-around border-y lg:border-y-0 absolute lg:static top-16 left-0 right-0 bg-[#fafafa] lg:bg-transparent z-40 lg:z-auto space-y-4 lg:space-y-0 lg:space-x-8 text-sm sm:text-lg font-semibold px-6 py-4 lg:py-0 transition-all duration-300 ease-in-out ${
             isOpen ? "flex" : "hidden lg:flex"
           }`}
         >

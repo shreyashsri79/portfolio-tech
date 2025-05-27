@@ -1,7 +1,11 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react'
 import WorkCards from './WorkCards'
+import { Gabriela } from 'next/font/google'
+import { Style_Script } from 'next/font/google'
 
+const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
+const desc = Style_Script({ subsets: ["latin"], weight: ["400", "400"] })
 const Skills = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [visibleStats, setVisibleStats] = useState(false);
@@ -47,15 +51,15 @@ const Skills = () => {
   const skillsData = [
     {
       title: "Languages",
-      items: ["Java", "Kotlin", "C++", "Python", "JavaScript", "TypeScript", "HTML", "CSS", "SQL"]
+      items: ["Java", "Kotlin", "C++", "JavaScript", "TypeScript", "Python", "HTML", "CSS", "SQL"]
     },
     {
       title: "Frameworks & Libraries", 
-      items: ["React", "Next.js", "Express", "Node.js", "Tailwind CSS", "Vite", "Jetpack Compose", "Spring Boot"]
+      items: ["Jetpack Compose", "React", "Next.js", "Express", "Node.js", "Tailwind CSS", "Vite", "Spring Boot"]
     },
     {
       title: "Tools & Platforms",
-      items: ["Android Studio", "Postman", "Git", "GitHub", "VS Code"]
+      items: ["Android Studio", "VS Code", "Git", "Postman", "GitHub",]
     },
     {
       title: "Databases",
@@ -90,12 +94,12 @@ const Skills = () => {
                 : 'opacity-0 translate-y-10'
             }`}
           >
-            <h2 className="text-xl font-extrabold text-center w-32 shrink-0">{section.title}</h2>
+            <h2 className={`${title.className} text-2xl font-extrabold text-center w-32 shrink-0`}>{section.title}</h2>
             <div className="flex flex-wrap gap-3 p-3 md:w-150 justify-center">
               {section.items.map((item, itemIndex) => (
                 <div
                   key={item}
-                  className={`border border-black px-3 py-1 font-bold transition-all duration-500  hover:bg-red-600 hover:text-white cursor-pointer ${
+                  className={`${title.className} border border-black px-3 py-1 font-bold transition-all duration-500  hover:bg-red-600 hover:text-white cursor-pointer ${
                     visibleSections.has(sectionIndex)
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-5'
@@ -116,7 +120,7 @@ const Skills = () => {
         <div className={`w-screen flex justify-center transition-all duration-800 ${
           visibleStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className='text-3xl font-bold underline underline-offset-4'>My Github Stats</h2>
+          <h2 className={`${title.className} text-3xl lg:text-5xl font-bold `}>My Github Stats</h2>
         </div>
         
         <div className={`w-screen flex justify-center py-15 transition-all duration-1000 delay-200 ${

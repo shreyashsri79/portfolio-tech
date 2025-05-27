@@ -1,10 +1,10 @@
 "use client"
 import React, { useRef, useEffect } from 'react'
 import Image from 'next/image';
-import { Noto_Sans_Georgian } from 'next/font/google';
+import { Gabriela } from 'next/font/google';
 
 
-const title = Noto_Sans_Georgian({ subsets: ["latin"], weight: ["400", "400"] })
+const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
 
 export default function WorkCards({colorA, colorB, header, companyName, image, footer}) {
   const cardRef = useRef(null);
@@ -54,12 +54,12 @@ export default function WorkCards({colorA, colorB, header, companyName, image, f
       >
         {/* Header */}
         <div className="p-3 border-b border-black">
-          <p className="text-sm tracking-wide">{header}</p>
+          <p className={` text-sm tracking-wide`}>{header}</p>
         </div>
         
         {/* Company Name */}
-        <div className={`${title.className} p-3 border-b border-black font-mono`}>
-          <h2 className="text-3xl font-extrabold">{companyName}</h2>
+        <div className={`${title.className} p-3 border-b border-black`}>
+          <h2 className="no-underline text-3xl font-extrabold">{companyName}</h2>
         </div>
         
         <div className={`${colorB} flex justify-center`}>
@@ -75,7 +75,7 @@ export default function WorkCards({colorA, colorB, header, companyName, image, f
         
         {/* Footer */}
         <div className="p-3 border-y border-black">
-          <p className="text-md font-semibold">{footer}</p>
+          <p className={`${title.className} text-md font-semibold`}>{footer}</p>
         </div>
       </div>
     </div>

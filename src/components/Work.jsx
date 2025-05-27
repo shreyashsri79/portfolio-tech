@@ -1,7 +1,9 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react'
 import WorkCards from './WorkCards'
+import { Gabriela } from 'next/font/google';
 
+const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] });
 const Work = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
@@ -65,7 +67,7 @@ const Work = () => {
         className="border-y border-black bg-[#fafafa] overflow-hidden items-center"
       >
         <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
-          <div className={`text-2xl font-bold underline underline-offset-[6px] transition-all duration-800 ${
+          <div className={`${title.className} text-2xl font-bold underline underline-offset-[6px] transition-all duration-800 ${
             headerVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
             work
@@ -80,10 +82,10 @@ const Work = () => {
             ].map((item, index) => (
               <div 
                 key={index}
-                className={`transition-all duration-700 ${
+                className={`${title.className} transition-all duration-700 ${
                   item.text === "/" 
                     ? " text-xl font-bold" 
-                    : ":text-lg font-light underline underline-offset-[6px]"
+                    : ":text-lg font-light underline-offset-[6px]"
                 } ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
                 }`}
@@ -106,7 +108,7 @@ const Work = () => {
           <a
             key={card.companyName}
             href={card.url}
-            className={`transition-all duration-800 ${
+            className={`no-underline transition-all duration-800 ${
               cardsVisible 
                 ? 'opacity-100 translate-y-0 scale-100' 
                 : 'opacity-0 translate-y-20 scale-95'

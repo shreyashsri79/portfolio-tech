@@ -1,13 +1,16 @@
 
+
+
 // Dear Future Shreyash,
-// I have discovered the source of the cursed underline bug.
-// It lies in my own folly—passing a 'url' to the WorkCards component,
-// which performs its redirect yet betrays me with underlines.
-// I attempted to remove the 'url', but the problem persists;
-// the magnetic property of the card conspires against my efforts, mocking them silently.
-// I trust that some future GPT may correct this oversight,
-// but until that day, I remain in utter loss, bearing the shame of pushing
-// this code to production while clinging to the remnants of my sanity.
+// I have found the cause of the underline bug.
+// It's because I am passing a 'url' to the WorkCards component,
+// which redirects correctly but also underlines the text.
+// I’ve tried removing the 'url' and it does NOT work correctly,
+// because the magnetic property of the card interferes.
+// I believe in the future GPT’s skills that he’ll fix it.
+// Until then, I am at a loss and am pushing this code to prod
+// despite the issue, as I value my sanity—and I hope you do too.
+
 
 
 

@@ -1,81 +1,123 @@
-"use client"
-import React, { useRef, useEffect } from 'react'
-import Image from 'next/image';
-import { Gabriela } from 'next/font/google';
+"use client";
 
+import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import { Gabriela } from "next/font/google";
+import clsx from "clsx";
 
-const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
+const titleFont = Gabriela({ subsets: ["latin"], weight: "400" });
 
-export default function WorkCards({colorA, colorB, header, companyName, image, footer}) {
+export default function WorkCards({
+  colorA,
+  colorB,
+  header,
+  companyName,
+  image,
+  description,
+  footer,
+  bigWidth = false,
+  link,
+}) {
   const cardRef = useRef(null);
   const foregroundRef = useRef(null);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const card = cardRef.current;
     const foreground = foregroundRef.current;
-    
     if (!card || !foreground) return;
 
     const handleMouseMove = (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
-      // Calculate magnetic effect (adjust strength by changing divisor)
-      const magneticX = x * 0.1;
-      const magneticY = y * 0.1;
-      
-      foreground.style.transform = `translate(${magneticX}px, ${magneticY}px)`;
+      foreground.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
     };
 
     const handleMouseLeave = () => {
-      // Smooth return to original position
-      foreground.style.transform = 'translate(0px, 0px)';
+      foreground.style.transform = "translate(0px, 0px)";
     };
 
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
+    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
+      card.removeEventListener("mousemove", handleMouseMove);
+      card.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
+  const truncateDescription = (text, wordLimit = 20) => {
+    if (!text) return "";
+    const words = text.split(" ");
+    return words.length <= wordLimit
+      ? text
+      : words.slice(0, wordLimit).join(" ") + "...";
+  };
+
+  const handleClick = () => {
+    if (link) window.open(link, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <div ref={cardRef} className="relative w-70 font-mono cursor-pointer">
-      {/* Background offset layer */}
-      <div className={`absolute bottom-5 right-5 w-full h-full ${colorA} border border-black z-0`} />
-      
-      {/* Foreground card */}
-      <div 
+    <div
+      ref={cardRef}
+      className={clsx(
+        "relative font-mono",
+        bigWidth ? "w-[360px]" : "w-[280px]"
+      )}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Background layer */}
+      <div
+        className={clsx(
+          "absolute bottom-5 right-5 w-full h-full border border-black z-0",
+          colorA
+        )}
+      />
+
+      {/* Foreground (clickable) */}
+      <div
         ref={foregroundRef}
-        className="relative bg-white border border-black z-10 transition-transform duration-200 ease-out"
+        onClick={handleClick}
+        className="relative bg-white border border-black z-10 cursor-pointer transition-transform duration-200 ease-out will-change-transform"
+        style={{ pointerEvents: "auto" }}
       >
         {/* Header */}
         <div className="p-3 border-b border-black">
-          <p className={` text-sm tracking-wide`}>{header}</p>
+          <p className="text-sm tracking-wide">{header}</p>
         </div>
-        
+
         {/* Company Name */}
-        <div className={`${title.className} p-3 border-b border-black`}>
-          <h2 className="no-underline text-3xl font-extrabold">{companyName}</h2>
+        <div className={clsx(`${titleFont.className} p-3 border-b border-black`)}>
+          <h2 className="text-3xl font-extrabold">{companyName}</h2>
         </div>
-        
-        <div className={`${colorB} flex justify-center`}>
-          {/* Image */}
+
+        {/* Image */}
+        <div className={clsx("flex justify-center", colorB)}>
           <Image
             src={image}
-            height={200}
-            width={150}
             alt={companyName}
-            className='border-black p-5 object-fill h-50 w-50'
+            width={bigWidth ? 300 : 180}
+            height={200}
+            className="border-black p-5 object-contain pointer-events-none"
           />
         </div>
+
+        {/* Description */}
+        {description && (
+          <div className="p-3 border-b border-black space-y-2 overflow-hidden transition-all duration-300 ease-in-out">
+            <p className={`${titleFont.className} text-sm`}>
+              {hovered ? description : truncateDescription(description, 20)}
+            </p>
+          </div>
+        )}
         
+
         {/* Footer */}
-        <div className="p-3 border-y border-black">
-          <p className={`${title.className} text-md font-semibold`}>{footer}</p>
+        <div className={clsx(`${titleFont.className} p-3 border-y border-black`)}>
+          <p className="text-md font-semibold">{footer}</p>
         </div>
       </div>
     </div>

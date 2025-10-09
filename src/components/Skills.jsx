@@ -1,11 +1,12 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react'
-import WorkCards from './WorkCards'
-import { Gabriela } from 'next/font/google'
-import { Style_Script } from 'next/font/google'
 
-const title = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
-const desc = Style_Script({ subsets: ["latin"], weight: ["400", "400"] })
+import React, { useState, useEffect, useRef } from "react";
+import { Gabriela } from "next/font/google";
+import { Style_Script } from "next/font/google";
+
+const titleFont = Gabriela({ subsets: ["latin"], weight: ["400", "400"] });
+const descFont = Style_Script({ subsets: ["latin"], weight: ["400", "400"] });
+
 const Skills = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [visibleStats, setVisibleStats] = useState(false);
@@ -18,7 +19,7 @@ const Skills = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.dataset.index);
-            setVisibleSections(prev => new Set([...prev, index]));
+            setVisibleSections((prev) => new Set([...prev, index]));
           }
         });
       },
@@ -34,13 +35,8 @@ const Skills = () => {
       { threshold: 0.1 }
     );
 
-    sectionRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    if (statsRef.current) {
-      statsObserver.observe(statsRef.current);
-    }
+    sectionRefs.current.forEach((ref) => ref && observer.observe(ref));
+    statsRef.current && statsObserver.observe(statsRef.current);
 
     return () => {
       observer.disconnect();
@@ -50,27 +46,60 @@ const Skills = () => {
 
   const skillsData = [
     {
-      title: "Languages",
-      items: ["Java", "Kotlin", "C++", "JavaScript", "TypeScript", "Python", "HTML", "CSS", "SQL"]
+      title: "Programming Languages",
+      items: ["Java", "Python", "TypeScript", "JavaScript", "C++", "Kotlin"],
     },
     {
-      title: "Frameworks & Libraries", 
-      items: ["Jetpack Compose", "React", "Next.js", "Express", "Node.js", "Tailwind CSS", "Vite", "Spring Boot"]
+      title: "Libraries & Frameworks",
+      items: [
+        "Express",
+        "Next.js",
+        "Jetpack Compose",
+        "React Native",
+        "Spring Boot",
+        "NestJS",
+      ],
     },
     {
       title: "Tools & Platforms",
-      items: ["Android Studio", "VS Code", "Git", "Postman", "GitHub",]
+      items: [
+        "Git",
+        "Node.js",
+        "Docker",
+        "Kubernetes",
+        "Apache Kafka",
+        "RabbitMQ",
+        "Postman",
+        "Android Studio",
+        "AWS EC2", "AWS S3", "AWS Lambda", "AWS RDS", "AWS SQS", "AWS CloudWatch", "AWS IAM", "AWS ECS/ECR",
+        "Prometheus",
+        "Nginx",
+        "Jenkins",
+        "GitHub Actions",
+        "GitLab CI/CD",
+      ],
     },
     {
       title: "Databases",
-      items: ["PostgreSQL", "MongoDB", "Room DB", "Firebase"]
-    }
+      items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Firestore"],
+    },
+    {
+      title: "Backend Expertise",
+      items: [
+        "Microservices Architecture",
+        "Event-driven Architecture / Message Brokers",
+        "API Design (REST, GraphQL)",
+        "Authentication & Authorization (OAuth2, JWT)",
+        "Scalability & High Availability",
+        "Performance Optimization",
+        "Deployment & CI/CD Pipelines",
+      ],
+    },
   ];
 
   return (
     <>
-      {/* Animated Header */}
-      <header id='skills' className="border-y border-black bg-[#fafafa] overflow-hidden">
+      <header id="skills" className="border-y border-black bg-[#fafafa] overflow-hidden">
         <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
           <div className="text-2xl font-bold underline underline-offset-[6px] animate-slide-in-left">
             skills
@@ -81,28 +110,29 @@ const Skills = () => {
         </nav>
       </header>
 
-      {/* Skills Sections with Staggered Animation */}
       <div className="py-30 space-y-15">
         {skillsData.map((section, sectionIndex) => (
-          <div 
-            key={section.title} 
-            ref={el => sectionRefs.current[sectionIndex] = el}
+          <div
+            key={section.title}
+            ref={(el) => (sectionRefs.current[sectionIndex] = el)}
             data-index={sectionIndex}
             className={`flex flex-col lg:flex-row gap-10 lg:gap-50 items-center w-screen justify-center transition-all duration-700 ${
-              visibleSections.has(sectionIndex) 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
+              visibleSections.has(sectionIndex)
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
-            <h2 className={`${title.className} text-2xl font-extrabold text-center w-32 shrink-0`}>{section.title}</h2>
+            <h2 className={`${titleFont.className} text-2xl font-extrabold text-center w-32 shrink-0`}>
+              {section.title}
+            </h2>
             <div className="flex flex-wrap gap-3 p-3 md:w-150 justify-center">
-              {section.items.map((item, itemIndex) => (
+              {section.items.map((item) => (
                 <div
                   key={item}
-                  className={`${title.className} border border-black px-3 py-1 font-bold transition-all duration-500  hover:bg-red-600 hover:text-white cursor-pointer ${
+                  className={`${titleFont.className} border border-black px-3 py-1 font-bold transition-all duration-500 hover:bg-red-600 hover:text-white cursor-pointer ${
                     visibleSections.has(sectionIndex)
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-5'
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-5"
                   }`}
                 >
                   {item}
@@ -113,37 +143,42 @@ const Skills = () => {
         ))}
       </div>
 
-      <hr className='py-5 bg-[#fafafa]' />
+      <hr className="py-5 bg-[#fafafa]" />
 
-      {/* GitHub Stats with Entrance Animation */}
-      <div className='bg-[#fafafa]' ref={statsRef}>
-        <div className={`w-screen flex justify-center transition-all duration-800 ${
-          visibleStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <h2 className={`${title.className} text-3xl lg:text-5xl font-bold `}>My Github Stats</h2>
+      <div className="bg-[#fafafa]" ref={statsRef}>
+        <div
+          className={`w-screen flex justify-center transition-all duration-800 ${
+            visibleStats ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h2 className={`${titleFont.className} text-3xl lg:text-5xl font-bold`}>My GitHub Stats</h2>
         </div>
-        
-        <div className={`w-screen flex justify-center py-15 transition-all duration-1000 delay-200 ${
-          visibleStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-        }`}>
-          <div className='flex flex-wrap w-300 justify-center gap-10 p-10'>
+
+        <div
+          className={`w-screen flex justify-center py-15 transition-all duration-1000 delay-200 ${
+            visibleStats ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+          }`}
+        >
+          <div className="flex flex-wrap w-300 justify-center gap-10 p-10">
             {[
               "repos-per-language",
-              "most-commit-language", 
+              "most-commit-language",
               "productive-time",
               "stats",
-              "profile-details"
-            ].map((cardType, index) => (
+              "profile-details",
+            ].map((cardType) => (
               <div
                 key={cardType}
                 className={`transition-all duration-300 hover:scale-103 ${
-                  visibleStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  visibleStats ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
                 <img
-                  src={`http://github-profile-summary-cards.vercel.app/api/cards/${cardType}?username=shreyashsri79&theme=graywhite${cardType === 'productive-time' ? '&utcOffset=8' : ''}`}
+                  src={`http://github-profile-summary-cards.vercel.app/api/cards/${cardType}?username=shreyashsri79&theme=graywhite${
+                    cardType === "productive-time" ? "&utcOffset=8" : ""
+                  }`}
                   alt="GitHub Stats"
-                  className="border transition-transform duration-100 "
+                  className="border transition-transform duration-100"
                 />
               </div>
             ))}
@@ -183,7 +218,7 @@ const Skills = () => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

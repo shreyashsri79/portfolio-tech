@@ -52,6 +52,16 @@ const Work = () => {
 
   const workData = [
     {
+      colorA: "bg-red-900",
+      colorB: "bg-red-700",
+      header: "May 2026 - July 2026",
+      companyName: "ESIM",
+      image: "/esim.png",
+      footer: "FOSSEE FELLOWSHIP",
+      url: "https://github.com/FOSSEE/eSim.git",
+      description: `eSim is a government-funded, open-source EDA tool developed by IIT Bombay for circuit design, simulation, and PCB layout. Built on integrated FLOSS tools like KiCad and Ngspice, it provides a robust platform for electronic system design, bridging the gap between academic research and professional-grade hardware engineering and manufacturing.`
+    },
+    {
       colorA: "bg-yellow-900",
       colorB: "bg-yellow-200",
       header: "Sept 2025 – Nov 2025",
@@ -62,24 +72,14 @@ const Work = () => {
       description: `Built scalable microservices backend using Node.js, Express, AWS, Docker, Kafka, and Prometheus. Developed React Native app integrating APIs, optimizing performance, and cutting bugs by 40%. Delivered production-ready solutions through CI/CD, Jest testing, and cross-functional collaboration. Tech stack: Node.js, Express, React Native, AWS, Docker, Kafka, Nginx, Jest, CI/CD.`,
     },
     {
-      colorA: "bg-red-900",
-      colorB: "bg-red-700",
-      header: "February 2025",
-      companyName: "LOCALLOOP",
-      image: "/LocalLoop.png",
-      footer: "PROTOTYPE",
-      url: "https://github.com/shreyashsri79/LocalLoop",
-      description: `LocalLoop is a sleek and intuitive platform designed for local communities to buy, sell, and exchange items with ease. Whether you're decluttering your space or hunting for great deals, LocalLoop bridges the gap between neighbors through trusted, location-based commerce.`
-    },
-    {
       colorA: "bg-blue-900",
-      colorB: "bg-blue-700",
-      header: "April 2025",
-      companyName: "SCROLLANA",
-      image: "/Scrollana.png",
-      footer: "HACKATHON",
-      url: "https://github.com/Sk-Sahil-Islam/SageTech",
-      description : "scrollana is a unique mobile application designed to help you become more mindful of your scrolling habits on social media and other apps. Instead of completely blocking your access to your favorite applications, SageTech takes a more gradual approach to help you develop healthier digital habits."
+      colorB: "bg-blue-400",
+      header: "April 2026",
+      companyName: "OPENAIR",
+      image: "/openair.png",
+      footer: "PROJECT",
+      url: "https://github.com/shreyashsri79/OpenAir",
+      description : "OpenAir is a GPL 3.0 liscensed FLOSS serverless, cross-platform P2P file-sharing system built for high-speed LAN transfers. Featuring a bi-directional architecture in both Go and Kotlin, every node acts as both sender and receiver. It prioritizes clean code and minimalist design, delivering a secure, decentralized solution for seamless, high-performance data exchange."
     },
   ];
 

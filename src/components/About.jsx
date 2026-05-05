@@ -115,21 +115,21 @@ const About = () => {
               {/* Content */}
               <p className={`${desc.className} font-bold relative z-10 text-lg leading-relaxed transition-colors duration-300`}>
   {item === "text1" ? (
-    <>
-      I'm a full-stack developer who blends logic with imagination. Whether it's building 
-      <span className="text-red-600 font-bold"> sleek android apps </span> 
-      or crafting 
-      <span className="text-red-600 font-bold"> responsive web experiences</span>, I treat every project like a digital canvas. 
-      I believe clean code is poetry, and I aim to write verses that both humans and machines understand.
-    </>
-  ) : (
-    <>
-      Beyond the screen, I’m a curious learner, always chasing the next 
-      <span className="text-red-600 font-bold"> "aha!" moment</span>—be it in tech, design, or life. 
-      Fueled by 
-      <span className="text-red-600 font-bold"> maggi and late-night ideas</span>, I thrive on turning complex problems into elegant solutions. 
-      If innovation were a game, I’d be playing it in hard mode—just for the thrill.
-    </>
+   <>
+    I’m a systems-focused developer who blends logic with craftsmanship. Whether it's architecting 
+    <span className="text-red-600 font-bold"> distributed P2P protocols </span> 
+    or building 
+    <span className="text-red-600 font-bold"> high-performance systems</span>, I treat every codebase like a digital canvas. 
+    I believe clean architecture is poetry, and I aim to write verses that both humans and machines understand.
+  </>
+) : (
+  <>
+    Beyond the screen, I’m a curious learner, always chasing the next 
+    <span className="text-red-600 font-bold"> "aha!" moment</span>—be it in tech, philosophy, or life. 
+    Fueled by 
+    <span className="text-red-600 font-bold"> maggi and late-night ideas</span>, I thrive on turning complex bottlenecks into elegant solutions. 
+    If innovation were a game, I’d be playing it in hard mode—just for the thrill.
+  </>
   )}
 </p>
 

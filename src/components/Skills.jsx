@@ -47,41 +47,19 @@ const Skills = () => {
   const skillsData = [
     {
       title: "Programming Languages",
-      items: ["Java", "Python", "TypeScript", "JavaScript", "C++", "Kotlin"],
+      items: ["Go", "Java", "Kotlin", "TypeScript", "JavaScript", "SQL"],
     },
     {
       title: "Libraries & Frameworks",
-      items: [
-        "Express",
-        "Next.js",
-        "Jetpack Compose",
-        "React Native",
-        "Spring Boot",
-        "NestJS",
-      ],
+      items: ["Gin", "Jetpack Compose", "React Native", "Express.js", "Next.js", "Node.js"],
     },
     {
-      title: "Tools & Platforms",
-      items: [
-        "Git",
-        "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Apache Kafka",
-        "RabbitMQ",
-        "Postman",
-        "Android Studio",
-        "AWS EC2", "AWS S3", "AWS Lambda", "AWS RDS", "AWS SQS", "AWS CloudWatch", "AWS IAM", "AWS ECS/ECR",
-        "Prometheus",
-        "Nginx",
-        "Jenkins",
-        "GitHub Actions",
-        "GitLab CI/CD",
-      ],
+      title: "Systems",
+      items: ["Concurrency", "TCP/UDP Socket Programming", "Protocol Implementation", "mDNS"],
     },
     {
-      title: "Databases",
-      items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Firestore"],
+      title: "Databases & Tools:",
+      items: ["Docker", "PostgreSQL", "Redis", "MongoDB", "MySQL", "Git", "Postman", "Android Studio"],
     },
     {
       title: "Backend Expertise",

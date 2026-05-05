@@ -54,7 +54,7 @@ const Hero = () => {
           }`}
           style={{ transitionDelay: '600ms' }}
           >
-            Developer
+            Backend Developer
           </p>
         </div>
         
@@ -68,9 +68,11 @@ const Hero = () => {
         >
           <p className={`${desc.className} max-w-150 text-lg`}>
             —hi iam <span className='text-red-600 font-extrabold animate-pulse'>shreyash,</span> <br />
-            a full-stack developer, problem solver, android enthusiast, web tinkerer,
-            backend builder, design admirer, tech explorer — and a second-year
-            engineering student shaping thoughtful experiences.
+            Backend-leaning engineer with strong fundamentals in system design, distributed systems, and DevOps. 
+            Experienced in building scalable apps using Go, Node.js, PostgreSQL, Redis, and Docker, with hands-on 
+            exposure to cloud deployments and microservice architectures. Hackathon leader, fast learner, and problem 
+            solver who thrives in high-ownership environments. Currently sharpening backend, infrastructure, and automation skills 
+            to build resilient, production-grade systems that actually scale.
           </p>
         </div>
       </div>

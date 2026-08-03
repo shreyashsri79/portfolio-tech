@@ -54,7 +54,7 @@ const Hero = () => {
           }`}
           style={{ transitionDelay: '600ms' }}
           >
-            Backend Developer
+            Backend & Systems
           </p>
         </div>
         
@@ -67,12 +67,13 @@ const Hero = () => {
         style={{ transitionDelay: '800ms' }}
         >
           <p className={`${desc.className} max-w-150 text-lg`}>
-            —hi iam <span className='text-red-600 font-extrabold animate-pulse'>shreyash,</span> <br />
-            Backend-leaning engineer with strong fundamentals in system design, distributed systems, and DevOps. 
-            Experienced in building scalable apps using Go, Node.js, PostgreSQL, Redis, and Docker, with hands-on 
-            exposure to cloud deployments and microservice architectures. Hackathon leader, fast learner, and problem 
-            solver who thrives in high-ownership environments. Currently sharpening backend, infrastructure, and automation skills 
-            to build resilient, production-grade systems that actually scale.
+            hi, iam <span className='text-red-600 font-extrabold animate-pulse'>shreyash,</span> <br />
+            I work on the layer under the application: protocol design, QUIC and TCP transports,
+            NAT traversal, and kernel I/O. Currently building OpenAir, a peer to peer device
+            continuity platform in Go that runs on a vendored quic-go fork with BBR, secured by
+            pinned Ed25519 keys with no certificate authority anywhere in the path. I write the
+            specification first, measure before I claim anything, and keep the decisions I got
+            wrong in the log instead of deleting them.
           </p>
         </div>
       </div>

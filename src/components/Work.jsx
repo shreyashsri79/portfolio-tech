@@ -52,6 +52,16 @@ const Work = () => {
 
   const workData = [
     {
+      colorA: "bg-blue-900",
+      colorB: "bg-blue-400",
+      header: "July 2026 - Present",
+      companyName: "OPENAIR",
+      image: "/openair.png",
+      footer: "PROJECT",
+      url: "https://github.com/shreyashsri79/OpenAir",
+      description: `A device continuity platform in Go, GPL-3.0. Files, clipboard, notifications, remote filesystem, screen mirror and remote input all ride one QUIC connection per peer across Linux, Windows, macOS and Android. No cloud in the data path and no certificate authority: Ed25519 device keys pin TLS 1.3 directly, and pairing is confirmed by six digits both humans compare. Runs on a vendored quic-go fork carrying BBRv1 and a Windows USO send path. A 1,255-line normative wire specification, a threat model and an append-only decision log came before the implementation.`
+    },
+    {
       colorA: "bg-red-900",
       colorB: "bg-red-700",
       header: "May 2026 - July 2026",
@@ -59,27 +69,27 @@ const Work = () => {
       image: "/esim.png",
       footer: "FOSSEE FELLOWSHIP",
       url: "https://github.com/FOSSEE/eSim.git",
-      description: `eSim is a government-funded, open-source EDA tool developed by IIT Bombay for circuit design, simulation, and PCB layout. Built on integrated FLOSS tools like KiCad and Ngspice, it provides a robust platform for electronic system design, bridging the gap between academic research and professional-grade hardware engineering and manufacturing.`
+      description: `Summer fellowship at FOSSEE, IIT Bombay, on eSim on Cloud. Migrated the schematic editor off the unmaintained mxGraph engine onto a custom React and SVG canvas, preserving the legacy XML save format and the API contracts of 25 downstream modules behind a facade. Replaced its netlist generation with a coordinate-keyed DSU connectivity compiler, shipped a Verilog, SystemVerilog and VHDL simulation service on Django and Celery, and led the production PostgreSQL 13 to 18 upgrade.`
+    },
+    {
+      colorA: "bg-emerald-900",
+      colorB: "bg-emerald-400",
+      header: "April 2026 - May 2026",
+      companyName: "OABLT",
+      image: "/openair.png",
+      footer: "PROJECT",
+      url: "https://github.com/shreyashsri79/oablt",
+      description: `Bulk local file transfer over parallel TCP, Go on the receiver and Kotlin on Android, GPL-3.0. A control connection negotiates the transfer, then N worker connections stream chunks sized from the measured bandwidth-delay product, reassembled by positional writes so they can land in any order. Found six structural bottlenecks by reading the byte path rather than profiling, including a mutex needlessly serialising concurrent pwrite(2), and took throughput from 15 Mb/s to 148 Mb/s on WiFi and 477 Mb/s on a direct hotspot.`
     },
     {
       colorA: "bg-yellow-900",
       colorB: "bg-yellow-200",
-      header: "Sept 2025 – Nov 2025",
+      header: "Sept 2025 - Nov 2025",
       companyName: "SHOPCARDD",
       image: "/ShopCardd.png",
       footer: "INTERNSHIP",
       bigWidth: true,
-      description: `Built scalable microservices backend using Node.js, Express, AWS, Docker, Kafka, and Prometheus. Developed React Native app integrating APIs, optimizing performance, and cutting bugs by 40%. Delivered production-ready solutions through CI/CD, Jest testing, and cross-functional collaboration. Tech stack: Node.js, Express, React Native, AWS, Docker, Kafka, Nginx, Jest, CI/CD.`,
-    },
-    {
-      colorA: "bg-blue-900",
-      colorB: "bg-blue-400",
-      header: "April 2026",
-      companyName: "OPENAIR",
-      image: "/openair.png",
-      footer: "PROJECT",
-      url: "https://github.com/shreyashsri79/OpenAir",
-      description : "OpenAir is a GPL 3.0 liscensed FLOSS serverless, cross-platform P2P file-sharing system built for high-speed LAN transfers. Featuring a bi-directional architecture in both Go and Kotlin, every node acts as both sender and receiver. It prioritizes clean code and minimalist design, delivering a secure, decentralized solution for seamless, high-performance data exchange."
+      description: `SDE intern. Built a concurrent Node.js and Express microservices backend with custom PostgreSQL and Redis connection pooling and stream processing, sustaining 2,000+ requests per second at peak. Shipped a React Native checkout and catalog app, cutting UI thread latency 35% by optimising serialization across the JS to native bridge. Reduced post-production runtime errors 40% with CI/CD and a Jest suite at 85%+ coverage.`,
     },
   ];
 
@@ -103,7 +113,7 @@ const Work = () => {
             {[
               { text: "internships", delay: "200ms" },
               { text: "/", delay: "300ms" },
-              { text: "hackathons", delay: "400ms" },
+              { text: "projects", delay: "400ms" },
             ].map((item, index) => (
               <div
                 key={index}

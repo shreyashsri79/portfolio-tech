@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState, useRef } from 'react'
-import Image from 'next/image';
 import { Gabriela } from 'next/font/google';
 
 const desc = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
@@ -12,16 +11,7 @@ const About = () => {
   const headerRef = useRef(null);
   const containerRef = useRef(null);
 
-  const items = [
-    "/about1.jpeg",
-    "text1",
-    "/about2.jpeg",
-    "/about7.jpeg",
-    "/about4.jpeg",
-    "/about10.jpeg",
-    "text2",
-    "/about9.jpeg"
-  ];
+  const items = ["text1", "text2"];
 
   useEffect(() => {
     // Header animation
@@ -97,79 +87,49 @@ const About = () => {
         </nav>
       </header>
 
-      <div 
+      <div
         ref={containerRef}
         className='w-screen flex flex-wrap gap-10 px-10 py-20 justify-center'
       >
-        {items.map((item, idx) =>
-          item === "text1" || item === "text2" ? (
-            <div
-              key={idx}
-              className={`  md:h-60 w-[30rem] flex items-center shadow-2xl p-5 hover:scale-105 bg-white rounded-md relative overflow-hidden group cursor-pointer ${getItemAnimation(idx)}`}
-              style={{ 
-                transformOrigin: 'center',
-                animationDelay: `${idx * 150}ms`
-              }}
-            >
-              
-              {/* Content */}
-              <p className={`${desc.className} font-bold relative z-10 text-lg leading-relaxed transition-colors duration-300`}>
-  {item === "text1" ? (
-   <>
-    I’m a systems-focused developer who blends logic with craftsmanship. Whether it's architecting 
-    <span className="text-red-600 font-bold"> distributed P2P protocols </span> 
-    or building 
-    <span className="text-red-600 font-bold"> high-performance systems</span>, I treat every codebase like a digital canvas. 
-    I believe clean architecture is poetry, and I aim to write verses that both humans and machines understand.
-  </>
-) : (
-  <>
-    Beyond the screen, I’m a curious learner, always chasing the next 
-    <span className="text-red-600 font-bold"> "aha!" moment</span>—be it in tech, philosophy, or life. 
-    Fueled by 
-    <span className="text-red-600 font-bold"> maggi and late-night ideas</span>, I thrive on turning complex bottlenecks into elegant solutions. 
-    If innovation were a game, I’d be playing it in hard mode—just for the thrill.
-  </>
-  )}
-</p>
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className={`w-[30rem] flex items-center shadow-2xl p-8 hover:scale-105 bg-white rounded-md relative overflow-hidden group cursor-pointer ${getItemAnimation(idx)}`}
+            style={{
+              transformOrigin: 'center',
+              animationDelay: `${idx * 150}ms`
+            }}
+          >
+            {/* Content */}
+            <p className={`${desc.className} font-bold relative z-10 text-lg leading-relaxed transition-colors duration-300`}>
+              {item === "text1" ? (
+                <>
+                  I build the layer most people never look at. Right now that means
+                  <span className="text-red-600 font-bold"> QUIC transports</span>,
+                  <span className="text-red-600 font-bold"> wire formats</span>, and the kind of
+                  kernel I/O bug that costs you a syscall on every twelve bytes. I write the
+                  specification before the code, log every design decision with its reasoning,
+                  and keep the ones I got wrong in the file rather than quietly deleting them.
+                </>
+              ) : (
+                <>
+                  My favourite kind of work is the sort where you read the byte path end to end
+                  and find six things nobody profiled for. Everything I build runs
+                  <span className="text-red-600 font-bold"> peer to peer</span>, on
+                  <span className="text-red-600 font-bold"> hardware you already own</span>, with
+                  no server in the middle taking a cut. Because technology should not just exist
+                  for those who could afford it.
+                </>
+              )}
+            </p>
 
-              
-              {/* Animated border */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r rounded-md transition-all duration-300"></div>
-              
-              {/* Scale and lift effect */}
-              <div className="absolute inset-0 rounded-md transition-all duration-300 group-hover:shadow-3xl group-hover:-translate-y-2"></div>
-            </div>
-          ) : (
-            <div
-              key={idx}
-              className={`h-60 w-60 shadow-2xl rounded-md overflow-hidden group cursor-pointer relative ${getItemAnimation(idx)}`}
-              style={{ 
-                transformOrigin: 'center',
-                animationDelay: `${idx * 150}ms`
-              }}
-            >
-              {/* Image container with multiple hover effects */}
-              <div className="relative w-full h-full transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-2">
-                <Image
-                  src={item}
-                  width={240}
-                  height={240}
-                  quality={100}
-                  alt="About image"
-                  className="h-full w-full object-cover transition-all duration-500 group-hover:brightness-110 group-hover:contrast-110"
-                />
-                
-                
-                {/* Animated border effect */}
-                <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/30 rounded-md transition-all duration-300"></div>
-              </div>
-              
-              {/* Floating shadow effect */}
-              <div className="absolute inset-0 rounded-md transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-1 pointer-events-none"></div>
-            </div>
-          )
-        )}
+            {/* Animated border */}
+            <div className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r rounded-md transition-all duration-300"></div>
+
+            {/* Scale and lift effect */}
+            <div className="absolute inset-0 rounded-md transition-all duration-300 group-hover:shadow-3xl group-hover:-translate-y-2"></div>
+          </div>
+        ))}
       </div>
 
       <style jsx>{`

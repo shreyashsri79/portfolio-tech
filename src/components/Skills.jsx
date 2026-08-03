@@ -47,30 +47,42 @@ const Skills = () => {
   const skillsData = [
     {
       title: "Programming Languages",
-      items: ["Go", "Java", "Kotlin", "TypeScript", "JavaScript", "SQL"],
-    },
-    {
-      title: "Libraries & Frameworks",
-      items: ["Gin", "Jetpack Compose", "React Native", "Express.js", "Next.js", "Node.js"],
+      items: ["Go", "Kotlin", "TypeScript", "JavaScript", "Python", "Java", "SQL"],
     },
     {
       title: "Systems",
-      items: ["Concurrency", "TCP/UDP Socket Programming", "Protocol Implementation", "mDNS"],
+      items: [
+        "QUIC (quic-go)",
+        "TCP/UDP Sockets",
+        "BBR / Congestion Control",
+        "Wire Protocol Design",
+        "NAT Traversal (STUN)",
+        "mDNS / Zeroconf",
+        "pwrite / writev",
+        "Goroutines & Channels",
+      ],
     },
     {
-      title: "Databases & Tools:",
-      items: ["Docker", "PostgreSQL", "Redis", "MongoDB", "MySQL", "Git", "Postman", "Android Studio"],
+      title: "Security",
+      items: ["Ed25519", "TLS 1.3 with Pinned Keys", "SHA-256 Integrity", "Argon2id", "Threat Modelling"],
+    },
+    {
+      title: "Libraries & Frameworks",
+      items: ["Gin", "Django", "Celery", "Jetpack Compose", "React Native", "Express.js", "Next.js", "Node.js"],
+    },
+    {
+      title: "Databases & Tools",
+      items: ["PostgreSQL", "Redis", "MongoDB", "MySQL", "Docker", "Git", "Postman", "Android Studio"],
     },
     {
       title: "Backend Expertise",
       items: [
         "Microservices Architecture",
-        "Event-driven Architecture / Message Brokers",
-        "API Design (REST, GraphQL)",
-        "Authentication & Authorization (OAuth2, JWT)",
-        "Scalability & High Availability",
-        "Performance Optimization",
-        "Deployment & CI/CD Pipelines",
+        "Connection Pooling",
+        "REST API Design",
+        "Concurrency & Lock-Free Patterns",
+        "Performance Measurement",
+        "CI/CD Pipelines",
       ],
     },
   ];

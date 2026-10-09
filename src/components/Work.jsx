@@ -1,166 +1,174 @@
+import SectionHead from "./SectionHead";
+import { PaperPlane, Resistor, Bolt, Cart } from "./Doodles";
 
+const work = [
+  {
+    name: "OpenAir",
+    when: "Jul 2026 – now",
+    kind: "Project",
+    note: "spec first. always.",
+    doodle: <PaperPlane />,
+    stack: "Go · QUIC (vendored quic-go + BBR) · Ed25519 · Protobuf · mDNS · STUN · Kotlin",
+    url: "https://github.com/shreyashsri79/OpenAir",
+    linkLabel: "source on github ↗︎",
+    text: [
+      "A device continuity platform, GPL-3.0. Files, clipboard, notifications, remote filesystem, screen mirror and remote input all ride one QUIC connection per peer across Linux, Windows, macOS and Android.",
+      "No cloud in the data path and no certificate authority: Ed25519 device keys pin TLS 1.3 directly, and pairing is confirmed by six digits both humans compare. A 1,255-line normative wire specification, a threat model and an append-only decision log came before the implementation.",
+    ],
+    caption: "8 bytes, every message",
+    figure: (
+      <>
+        <div
+          className="bytes"
+          role="img"
+          aria-label="Envelope fields: ver, capID, msgType, length, then a protobuf payload"
+        >
+          <span>ver</span>
+          <span>capID</span>
+          <span>msgType</span>
+          <span>length</span>
+        </div>
+        <div className="bytes" aria-hidden="true">
+          <span className="open">protobuf payload …</span>
+        </div>
+        <p className="fix">
+          <s>certificate authority</s>
+          <b>pinned Ed25519 keys</b>
+        </p>
+      </>
+    ),
+  },
+  {
+    name: "eSim on Cloud",
+    when: "May – Jul 2026",
+    kind: "Fellowship",
+    note: "25 modules never noticed",
+    doodle: <Resistor />,
+    stack: "FOSSEE, IIT Bombay · React + SVG · Django · Celery · Docker · PostgreSQL",
+    url: "https://github.com/FOSSEE/eSim",
+    linkLabel: "FOSSEE/eSim on github ↗︎",
+    text: [
+      "Summer fellowship. Migrated the schematic editor off the unmaintained mxGraph engine onto a custom React and SVG canvas, preserving the legacy XML save format and the API contracts of 25 downstream modules behind a facade.",
+      "Replaced its netlist generation with a coordinate-keyed DSU connectivity compiler, shipped a Verilog, SystemVerilog and VHDL simulation service on Django and Celery, and led the production PostgreSQL upgrade.",
+    ],
+    caption: "three things replaced",
+    figure: (
+      <>
+        <p className="fix">
+          <s>mxGraph engine</s>
+          <b>React + SVG canvas</b>
+        </p>
+        <p className="fix">
+          <s>DFS over terminals</s>
+          <b>coordinate-keyed DSU</b>
+        </p>
+        <p className="fix">
+          <s>PostgreSQL 13</s>
+          <b>PostgreSQL 18</b>
+        </p>
+      </>
+    ),
+  },
+  {
+    name: "OABLT",
+    when: "Apr – May 2026",
+    kind: "Project",
+    note: "no profiler. just reading.",
+    doodle: <Bolt />,
+    stack: "Go · Kotlin / Jetpack Compose · TCP sockets · mDNS / NSD · pwrite / writev",
+    url: "https://github.com/shreyashsri79/oablt",
+    linkLabel: "source on github ↗︎",
+    text: [
+      "Bulk local file transfer over parallel TCP, Go on the receiver and Kotlin on Android, GPL-3.0. A control connection negotiates the transfer, then N worker connections stream chunks sized from the measured bandwidth-delay product, reassembled by positional writes so they can land in any order.",
+      "Found six structural bottlenecks by reading the byte path rather than profiling, including a mutex needlessly serialising concurrent pwrite(2).",
+    ],
+    caption: "same link, six fixes later",
+    figure: (
+      <>
+        <div className="bars">
+          <p className="was">
+            <s>15 Mb/s</s> before
+            <i style={{ "--v": "3.1%" }} />
+          </p>
+          <p>
+            148 Mb/s on 5 GHz WiFi
+            <i style={{ "--v": "31%" }} />
+          </p>
+          <p>
+            477 Mb/s on a direct hotspot
+            <i style={{ "--v": "100%" }} />
+          </p>
+        </div>
+        <div
+          className="bytes"
+          role="img"
+          aria-label="12-byte chunk header: offset as u64, size as u32, then the chunk"
+        >
+          <span style={{ "--w": 8 }}>offset u64</span>
+          <span style={{ "--w": 4 }}>size u32</span>
+        </div>
+      </>
+    ),
+  },
+  {
+    name: "ShopCardd",
+    when: "Sep – Nov 2025",
+    kind: "Internship",
+    note: "measure, then claim",
+    doodle: <Cart />,
+    stack: "Node.js · Express · PostgreSQL · Redis · React Native · Jest",
+    text: [
+      "SDE intern. Built a concurrent Node.js and Express microservices backend with custom PostgreSQL and Redis connection pooling and stream processing. Shipped a React Native checkout and catalog app, optimising serialization across the JS to native bridge, and put CI/CD and a Jest suite in front of production.",
+    ],
+    caption: "measured, not guessed",
+    figure: (
+      <dl className="tally">
+        <dt>2,000+</dt>
+        <dd>requests per second at peak</dd>
+        <dt>−35%</dt>
+        <dd>UI thread latency</dd>
+        <dt>−40%</dt>
+        <dd>post-production runtime errors</dd>
+        <dt>85%+</dt>
+        <dd>test coverage</dd>
+      </dl>
+    ),
+  },
+];
 
-
-// Dear Future Shreyash,
-// I have found the cause of the underline bug.
-// It's because I am passing a 'url' to the WorkCards component,
-// which redirects correctly but also underlines the text.
-// I’ve tried removing the 'url' and it does NOT work correctly,
-// because the magnetic property of the card interferes.
-// I believe in the future GPT’s skills that he’ll fix it.
-// Until then, I am at a loss and am pushing this code to prod
-// despite the issue, as I value my sanity—and I hope you do too.
-
-
-
-
-"use client";
-import React, { useState, useEffect, useRef } from "react";
-import WorkCards from "./WorkCards";
-import { Gabriela } from "next/font/google";
-
-const titleFont = Gabriela({ subsets: ["latin"], weight: "400" });
-
-const Work = () => {
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const [cardsVisible, setCardsVisible] = useState(false);
-  const headerRef = useRef(null);
-  const cardsRef = useRef(null);
-
-  useEffect(() => {
-    // Trigger header animation
-    const timer = setTimeout(() => setHeaderVisible(true), 100);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === cardsRef.current && entry.isIntersecting) {
-            setCardsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (cardsRef.current) observer.observe(cardsRef.current);
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-    };
-  }, []);
-
-  const workData = [
-    {
-      colorA: "bg-blue-900",
-      colorB: "bg-blue-400",
-      header: "July 2026 - Present",
-      companyName: "OPENAIR",
-      image: "/openair.png",
-      footer: "PROJECT",
-      url: "https://github.com/shreyashsri79/OpenAir",
-      description: `A device continuity platform in Go, GPL-3.0. Files, clipboard, notifications, remote filesystem, screen mirror and remote input all ride one QUIC connection per peer across Linux, Windows, macOS and Android. No cloud in the data path and no certificate authority: Ed25519 device keys pin TLS 1.3 directly, and pairing is confirmed by six digits both humans compare. Runs on a vendored quic-go fork carrying BBRv1 and a Windows USO send path. A 1,255-line normative wire specification, a threat model and an append-only decision log came before the implementation.`
-    },
-    {
-      colorA: "bg-red-900",
-      colorB: "bg-red-700",
-      header: "May 2026 - July 2026",
-      companyName: "ESIM",
-      image: "/esim.png",
-      footer: "FOSSEE FELLOWSHIP",
-      url: "https://github.com/FOSSEE/eSim.git",
-      description: `Summer fellowship at FOSSEE, IIT Bombay, on eSim on Cloud. Migrated the schematic editor off the unmaintained mxGraph engine onto a custom React and SVG canvas, preserving the legacy XML save format and the API contracts of 25 downstream modules behind a facade. Replaced its netlist generation with a coordinate-keyed DSU connectivity compiler, shipped a Verilog, SystemVerilog and VHDL simulation service on Django and Celery, and led the production PostgreSQL 13 to 18 upgrade.`
-    },
-    {
-      colorA: "bg-emerald-900",
-      colorB: "bg-emerald-400",
-      header: "April 2026 - May 2026",
-      companyName: "OABLT",
-      image: "/openair.png",
-      footer: "PROJECT",
-      url: "https://github.com/shreyashsri79/oablt",
-      description: `Bulk local file transfer over parallel TCP, Go on the receiver and Kotlin on Android, GPL-3.0. A control connection negotiates the transfer, then N worker connections stream chunks sized from the measured bandwidth-delay product, reassembled by positional writes so they can land in any order. Found six structural bottlenecks by reading the byte path rather than profiling, including a mutex needlessly serialising concurrent pwrite(2), and took throughput from 15 Mb/s to 148 Mb/s on WiFi and 477 Mb/s on a direct hotspot.`
-    },
-    {
-      colorA: "bg-yellow-900",
-      colorB: "bg-yellow-200",
-      header: "Sept 2025 - Nov 2025",
-      companyName: "SHOPCARDD",
-      image: "/ShopCardd.png",
-      footer: "INTERNSHIP",
-      bigWidth: true,
-      description: `SDE intern. Built a concurrent Node.js and Express microservices backend with custom PostgreSQL and Redis connection pooling and stream processing, sustaining 2,000+ requests per second at peak. Shipped a React Native checkout and catalog app, cutting UI thread latency 35% by optimising serialization across the JS to native bridge. Reduced post-production runtime errors 40% with CI/CD and a Jest suite at 85%+ coverage.`,
-    },
-  ];
-
+export default function Work() {
   return (
-    <>
-      <header
-        id="work"
-        ref={headerRef}
-        className="border-y border-black bg-[#fafafa] overflow-hidden items-center"
-      >
-        <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 font-serif">
-          <div
-            className={`${titleFont.className} text-2xl font-bold underline underline-offset-[6px] transition-all duration-800 ${
-              headerVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-            }`}
-          >
-            work
-          </div>
+    <section aria-labelledby="work">
+      <SectionHead id="work" title="work" aside="internships / projects" />
 
-          <div className="flex gap-2 lg:gap-3">
-            {[
-              { text: "internships", delay: "200ms" },
-              { text: "/", delay: "300ms" },
-              { text: "projects", delay: "400ms" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className={`${titleFont.className} transition-all duration-700 ${
-                  item.text === "/" ? "text-xl font-bold" : "text-lg font-light underline-offset-[6px]"
-                } ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"}`}
-                style={{
-                  transitionDelay: headerVisible ? item.delay : "0ms",
-                }}
-              >
-                {item.text}
-              </div>
+      {work.map((item) => (
+        <article key={item.name} className="entry" data-reveal>
+          <div className="entry-text">
+            <p className="hand when">
+              {item.when}, {item.kind.toLowerCase()}
+            </p>
+            <h3>{item.name}</h3>
+            <p className="hand note">{item.note}</p>
+            <p className="mono entry-stack">{item.stack}</p>
+            {item.text.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
+            <div className="entry-foot">
+              {item.url && (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="link">
+                  {item.linkLabel}
+                </a>
+              )}
+              {item.doodle}
+            </div>
           </div>
-        </nav>
-      </header>
 
-      <div
-        ref={cardsRef}
-        className="py-40 px-10 flex flex-wrap gap-20 justify-center"
-      >
-        {workData.map((card, index) => (
-          <a
-            key={card.companyName}
-            href={card.url}
-            className={`block no-underline transition-all duration-800 ${
-              cardsVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-20 scale-95"
-            }`}
-            style={{
-              transitionDelay: cardsVisible ? `${index * 200}ms` : "0ms",
-            }}
-          >
-            <WorkCards
-              colorA={card.colorA}
-              colorB={card.colorB}
-              header={card.header}
-              companyName={card.companyName}
-              image={card.image}
-              footer={card.footer}
-              bigWidth={card.bigWidth}
-              description={card.description} // ✅ description included
-            />
-          </a>
-        ))}
-      </div>
-    </>
+          <figure className="fig">
+            <div className="fig-card scrap mono">{item.figure}</div>
+            <figcaption className="hand">{item.caption}</figcaption>
+          </figure>
+        </article>
+      ))}
+    </section>
   );
-};
-
-export default Work;
+}

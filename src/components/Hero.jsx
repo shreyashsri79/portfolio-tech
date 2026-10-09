@@ -1,171 +1,52 @@
-"use client"
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { Style_Script, Gabriela } from 'next/font/google'
+import Cat from "./Cat";
+import { PawTrail, Sparkle } from "./Doodles";
 
-const title = Style_Script({ subsets: ["latin"], weight: ["400", "400"] })
-const desc = Gabriela({ subsets: ["latin"], weight: ["400", "400"] })
-
-const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Trigger animations after component mounts
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+export default function Hero() {
   return (
-    <div className='flex pt-60 p-10 lg:pt-0 lg:p-0 flex-col lg:flex-row h-screen w-screen justify-center items-center gap-20 bg-[#fafafa] overflow-hidden'>
-      {/* Text Content */}
-      <div className='flex flex-col gap-15'>
-        <div className='flex flex-col gap-5'>
-          {/* Name Animation */}
-          <p className={`${title.className} text-6xl md:text-8xl flex gap-10`}>
-            <span className={`transition-all duration-1000 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: '200ms' }}
-            >
-              Shreyash
-            </span>
-            <span className={`transition-all duration-1000 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: '400ms' }}
-            >
-              Neeraj
-            </span>
-          </p>
-          
-          {/* Developer Title */}
-          <p className={`${title.className} text-4xl transition-all duration-1000 ${
-            isVisible 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-10'
-          }`}
-          style={{ transitionDelay: '600ms' }}
+    <section id="top" className="hero">
+      <PawTrail />
+      <div>
+        <p className="hand rise">hi, i am</p>
+        <h1 className="hero-name rise" style={{ "--i": 1 }}>
+          Shreyash Neeraj
+          <Sparkle />
+          <svg
+            className="squiggle"
+            viewBox="0 0 300 12"
+            preserveAspectRatio="none"
+            aria-hidden="true"
           >
-            Backend & Systems
-          </p>
-        </div>
-        
-        {/* Description with Typing Effect */}
-        <div className={`transition-all duration-1200 ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-5'
-        }`}
-        style={{ transitionDelay: '800ms' }}
-        >
-          <p className={`${desc.className} max-w-150 text-lg`}>
-            hi, iam <span className='text-red-600 font-extrabold animate-pulse'>shreyash,</span> <br />
-            I work on the layer under the application: protocol design, QUIC and TCP transports,
-            NAT traversal, and kernel I/O. Currently building OpenAir, a peer to peer device
-            continuity platform in Go that runs on a vendored quic-go fork with BBR, secured by
-            pinned Ed25519 keys with no certificate authority anywhere in the path. I write the
-            specification first, measure before I claim anything, and keep the decisions I got
-            wrong in the log instead of deleting them.
-          </p>
-        </div>
+            <path pathLength="1" d="M2 8C40 2 70 11 110 6s80-3 120 1 50-2 68-1" />
+          </svg>
+        </h1>
+        <p className="hero-role rise" style={{ "--i": 2 }}>
+          Backend &amp; systems
+        </p>
+        <p className="hero-lead rise" style={{ "--i": 3 }}>
+          I work on the layer under the application: protocol design, QUIC and TCP transports, NAT
+          traversal, and kernel I/O.
+        </p>
+        <p className="hero-rest rise" style={{ "--i": 4 }}>
+          Currently building OpenAir, a peer to peer device continuity platform in Go. I write the
+          specification first, measure before I claim anything, and keep the decisions I got wrong
+          in the log instead of <s>deleting them</s>.
+        </p>
+        <p className="hero-links rise" style={{ "--i": 5 }}>
+          <a href="#work" className="link">
+            read the work ↓
+          </a>
+          <a href="/resume.pdf" className="link">
+            resume (pdf) ↗︎
+          </a>
+        </p>
+        <p className="hand hero-edu rise" style={{ "--i": 6 }}>
+          b.tech cse, vit bhopal, class of 2028
+        </p>
       </div>
 
-      {/* Image with Enhanced Animations */}
-      <div className={`transition-all duration-1000 ${
-        isVisible 
-          ? 'opacity-100 translate-x-0 scale-100' 
-          : 'opacity-0 translate-x-10 scale-95'
-      }`}
-      style={{ transitionDelay: '1000ms' }}
-      >
-        <div
-          className="relative w-50 h-80 cursor-pointer group"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Normal Image */}
-          <Image
-            src="/hero_img.png"
-            alt="default"
-            fill
-            className={`transition-all duration-300 ease-in-out  ${
-              isHovered ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          
-          {/* Hover Image with Bounce Effect */}
-          <Image
-            src="/hero_img_frustrated.png"
-            alt="hover"
-            fill
-            className={`absolute inset-0 transition-all duration-300 ease-in-out ${
-              isHovered 
-                ? 'opacity-100' 
-                : 'opacity-0'
-            }`}
-          />
-          
-          {/* Floating Animation on Image Container */}
-          <div className="absolute inset-0 animate-float pointer-events-none" />
-        </div>
+      <div className="rise" style={{ "--i": 6 }}>
+        <Cat />
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-
-        @keyframes pulse-red {
-          0%, 100% {
-            color: rgb(185, 28, 28);
-          }
-          50% {
-            color: rgb(239, 68, 68);
-          }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-pulse {
-          animation: pulse-red 2s ease-in-out infinite;
-        }
-
-        /* Subtle background animation */
-        .bg-\\[\\#fafafa\\] {
-          background: linear-gradient(-45deg, #fafafa, #f5f5f5, #f0f0f0, #fafafa);
-          background-size: 400% 400%;
-          animation: gradient 15s ease infinite;
-        }
-
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
-    </div>
-  )
+    </section>
+  );
 }
-
-export default Hero

@@ -9,7 +9,9 @@ const EYES = [
   { id: "cat-eye-left", clip: eyeLeft, x: 736, y: 492 },
   { id: "cat-eye-right", clip: eyeRight, x: 1094, y: 478 },
 ];
-const REACH = { x: 48, y: 22 }; // how far a pupil may drift from the middle of its eye
+// How far a pupil may drift from its resting spot. The lids are half shut, so there is far more
+// room below than above; anything past the eye outline is clipped.
+const REACH = { x: 56, up: 16, down: 46 };
 const NEAR = 150; // px around the cat where it starts to worry
 const DROP = "M0-44C20-12 28 6 28 22a28 28 0 11-56 0C-28 6-20-12 0-44z";
 
@@ -28,11 +30,14 @@ export default function Cat() {
   useEffect(() => {
     let frame = 0;
 
-    const track = (event) => {
-      if (event.pointerType !== "mouse" || !box.current) return;
-      const { clientX, clientY } = event;
+    let last = null; // where the cursor was last seen, in viewport coordinates
+
+    // Scrolling moves the cat under a still cursor, so the same update runs for both.
+    const update = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
+        if (!last || !box.current) return;
+        const { clientX, clientY } = last;
         const rect = box.current.getBoundingClientRect();
         const scale = VIEW.w / rect.width;
         const x = (clientX - rect.left) * scale;
@@ -45,7 +50,7 @@ export default function Cat() {
           const angle = Math.atan2(dy, dx);
           pupils.current[i]?.setAttribute(
             "transform",
-            `translate(${Math.cos(angle) * REACH.x * pull} ${Math.sin(angle) * REACH.y * pull})`,
+            `translate(${Math.cos(angle) * REACH.x * pull} ${Math.sin(angle) * (dy > 0 ? REACH.down : REACH.up) * pull})`,
           );
         });
 
@@ -59,9 +64,19 @@ export default function Cat() {
       });
     };
 
+    const track = (event) => {
+      if (event.pointerType !== "mouse") return;
+      last = { clientX: event.clientX, clientY: event.clientY };
+      update();
+    };
+
     window.addEventListener("pointermove", track);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
       window.removeEventListener("pointermove", track);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
       cancelAnimationFrame(frame);
     };
   }, []);

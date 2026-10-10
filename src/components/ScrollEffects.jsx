@@ -1,34 +1,35 @@
 "use client";
 import { useEffect } from "react";
 
-// Marks [data-reveal] elements with .is-in the first time they scroll into view.
-// Without JS nothing is hidden: the hiding rule only applies under .reveal-ready.
+// Hides [data-reveal] elements that start below the fold, then shows each one as it scrolls in.
+// Hiding is opt-in per element (.will-reveal), so anything this never touched, or that React
+// re-creates later, stays visible.
 export default function ScrollEffects() {
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
 
-    const root = document.documentElement;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in");
+          entry.target.classList.remove("will-reveal");
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px" }
+      { rootMargin: "0px 0px -12% 0px" },
     );
 
-    // Anything already on screen is shown straight away, so it never waits on the observer.
+    const waiting = [];
     document.querySelectorAll("[data-reveal]").forEach((el) => {
-      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-in");
-      else observer.observe(el);
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add("will-reveal");
+      observer.observe(el);
+      waiting.push(el);
     });
-    root.classList.add("reveal-ready");
 
     return () => {
       observer.disconnect();
-      root.classList.remove("reveal-ready");
+      waiting.forEach((el) => el.classList.remove("will-reveal"));
     };
   }, []);
 

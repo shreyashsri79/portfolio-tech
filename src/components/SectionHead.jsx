@@ -1,6 +1,7 @@
-export default function SectionHead({ id, title, aside, right = false }) {
+export default function SectionHead({ id, title, before, aside, right = false }) {
   return (
     <header id={id} className={`head ${right ? "right" : ""}`}>
+      {before && <p className="hand">{before}</p>}
       <h2>
         {title}
         <svg viewBox="0 0 180 20" preserveAspectRatio="none" aria-hidden="true">

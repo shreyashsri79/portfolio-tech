@@ -19,7 +19,7 @@ const certifications = [
 export default function About() {
   return (
     <section aria-labelledby="about">
-      <SectionHead id="about" title="about" aside="a little about me :)" />
+      <SectionHead id="about" before="a little" title="about" aside="me :)" />
 
       <div className="about" data-reveal>
         <PawTrail />
@@ -42,13 +42,21 @@ export default function About() {
         </div>
 
         <div>
-          <div className="facts scrap">
+          <div className="facts scrap sticky">
             <div>
               <h3 className="hand">education</h3>
               <ul>
                 <li>
-                  B.Tech, Computer Science
-                  <small>Vellore Institute of Technology, Bhopal · 2024 – 2028</small>
+                  B.Tech, Computer Science and Engineering
+                  <small>
+                    Vellore Institute of Technology, Bhopal · Sep 2024 – Jun 2028 (expected)
+                  </small>
+                </li>
+                <li>
+                  <small>
+                    Coursework: Data Structures & Algorithms, OOP in C++, Java and Advanced Java,
+                    DBMS, Theory of Computation, Cloud Computing, Internet & Web Programming
+                  </small>
                 </li>
               </ul>
             </div>

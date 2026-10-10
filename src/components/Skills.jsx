@@ -1,69 +1,55 @@
 import SectionHead from "./SectionHead";
 import { CoffeeRing } from "./Doodles";
 
+const tones = ["sticky", "corners", "pin", "", "sticky pin", "corners"];
+
 const skills = [
   {
     title: "Languages",
-    items: ["Go", "Kotlin", "TypeScript", "JavaScript", "Python", "Java", "SQL"],
+    items: ["Java", "C++", "Go", "Python", "Kotlin", "TypeScript", "JavaScript", "SQL", "Dart"],
   },
   {
-    title: "Systems",
+    title: "CS fundamentals",
     items: [
-      "QUIC (quic-go)",
-      "TCP/UDP sockets",
-      "BBR / congestion control",
-      "Wire protocol design",
-      "NAT traversal (STUN)",
-      "mDNS / Zeroconf",
-      "pwrite / writev",
-      "Goroutines & channels",
+      "Data structures & algorithms (graphs, union-find, MST, hashing, trees)",
+      "Object-oriented design",
+      "Concurrency",
+      "Networking (TCP/UDP, QUIC, TLS 1.3)",
+      "Operating systems I/O",
     ],
   },
   {
-    title: "Security",
+    title: "Back end & data",
     items: [
-      "Ed25519",
-      "TLS 1.3 with pinned keys",
-      "SHA-256 integrity",
-      "Argon2id",
-      "Threat modelling",
-    ],
-  },
-  {
-    title: "Frameworks",
-    items: [
-      "Gin",
+      "RESTful APIs",
       "Django",
       "Celery",
-      "Jetpack Compose",
-      "React Native",
       "Express.js",
-      "Next.js",
-      "Node.js",
-    ],
-  },
-  {
-    title: "Data & tools",
-    items: [
+      "Gin",
       "PostgreSQL",
       "Redis",
-      "MongoDB",
       "MySQL",
-      "Docker",
-      "Git",
-      "Postman",
-      "Android Studio",
+      "MongoDB",
+      "Schema migrations",
+      "Connection pooling",
     ],
   },
   {
-    title: "Backend",
+    title: "Front end & mobile",
+    items: ["React", "Next.js", "React Native", "Flutter", "Jetpack Compose"],
+  },
+  {
+    title: "Quality & tooling",
     items: [
-      "Microservices architecture",
-      "Connection pooling",
-      "REST API design",
-      "Concurrency & lock-free patterns",
-      "Performance measurement",
-      "CI/CD pipelines",
+      "JUnit",
+      "Jest",
+      "Go testing",
+      "End-to-end test harnesses",
+      "CI/CD",
+      "Docker (multi-stage builds)",
+      "Linux",
+      "Git",
+      "Benchmarking & profiling",
     ],
   },
 ];
@@ -71,12 +57,12 @@ const skills = [
 export default function Skills() {
   return (
     <section aria-labelledby="skills">
-      <SectionHead id="skills" title="skills" aside="in order of proficiency" right />
+      <SectionHead id="skills" title="skills" aside="what i reach for" right />
 
       <div className="skills" data-reveal>
         <CoffeeRing />
-        {skills.map((group) => (
-          <div key={group.title} className="skill scrap">
+        {skills.map((group, i) => (
+          <div key={group.title} className={`skill scrap ${tones[i % tones.length]}`}>
             <h3 className="hand">{group.title.toLowerCase()}</h3>
             <ul>
               {group.items.map((item) => (

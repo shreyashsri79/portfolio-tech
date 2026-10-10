@@ -1,5 +1,13 @@
 import SectionHead from "./SectionHead";
-import { FishBone } from "./Doodles";
+import { FishBone, Scatter } from "./Doodles";
+
+const clutter = [
+  ["cross", "7%", "40%", 40, 6, "pop thick wide"],
+  ["X marks the spot", "2%", "54%", 0, -6, "wide"],
+  ["catface", "84%", "6%", 58, 10, "wide"],
+  ["yarn", "12%", "72%", 50, 0, "pop wide"],
+  ["bowl", "76%", "46%", 46, -6, "wide"],
+];
 
 const email = "shreyashn.dev@gmail.com";
 
@@ -16,6 +24,7 @@ export default function Contact() {
       <SectionHead id="contact" title="contact" aside="write to me" />
 
       <div className="contact" data-reveal>
+        <Scatter items={clutter} />
         <a href={`mailto:${email}?subject=Contact%20from%20Portfolio`} className="contact-mail">
           {email}
         </a>
